@@ -1,0 +1,37 @@
+{
+  "evaluation": {
+    "source": {
+      "name": "rule",
+      "display": "rule",
+      "aggregation": "COUNT"
+    },
+    "comparison_operator": "GREATER_THAN",
+    "threshold": {
+      "value": {
+        "double_value": 0.0
+      }
+    },
+    "notification": {
+      "retrigger_seconds": 0,
+      "notify_on_ok": false
+    }
+  },
+  "schedule": {
+    "quartz_cron_schedule": "9 30 6 * * ?",
+    "timezone_id": "America/Sao_Paulo"
+  },
+  "query_lines": [
+    "(SELECT 'all_null' as rule,\r",
+    "        *\r",
+    "FROM    bees.brewery.vw_brewery_silver_quality\r",
+    "WHERE   percent_tabela = 100)\r",
+    "\r",
+    "UNION\r",
+    "\r",
+    "(SELECT 'location_missing' as rule,\r",
+    "        *\r",
+    "FROM    bees.brewery.vw_brewery_silver_quality\r",
+    "WHERE   check_quality = \"is_location_missing\" and percent_tabela > 0\r",
+    ")"
+  ]
+}
