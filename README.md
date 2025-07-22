@@ -1,6 +1,7 @@
 # bees
 
-Projeto desenvolvido para Case de recrutamento para o BEES
+Projeto desenvolvido para Case de recrutamento para o BEES  
+Para execução é necessário clonar o repositório em algum workspace databricks
 
 Origem dos Dados: https://api.openbrewerydb.org/v1/breweries
 
@@ -82,9 +83,10 @@ Orquestração
 -Retries: 1x cada task - delay 5 min
 
 Alerta Data Quality  
-Criado o Brewery_silver_check_quality utilizando o recurso de Alertas do databricks, onde é executada uma query a partir da view vw_brewery_silver_quality. 
+Criado o Brewery_silver_check_quality utilizando o recurso de Alertas do databricks, onde é executada uma query a partir da view vw_brewery_silver_quality.  
+Execuções diárias às 06:30  
 Enviado uma notificação por email para as seguintes ocorrências:
 - Se qualquer check de data_quality representar 100% dos registros da tabela
 - Se check location_missing for maior que 0% da tabela  
-Execuções diárias às 06:30
+
 
